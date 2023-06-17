@@ -1,0 +1,48 @@
+Question-Given a non-negative integer x, return the square root of x rounded down to the nearest integer. The returned integer should be non-negative as well. You must not use any built-in exponent function or operator. 
+
+ Example 1:
+Input: x = 4 Output: 2 Explanation: The square root of 4 is 2, so we return 2.
+Example 2:
+
+Input: x = 8 Output: 2 Explanation: The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
+Constraints:
+
+0 <= x <= 2^31 - 1
+
+Answer→To calculate the square root of a non-negative integer x and round it down to the nearest integer, you can use the binary search algorithm. Here's an example implementation in Python:
+
+python
+def mySqrt(x):
+    if x == 0:
+        return 0
+
+    left = 1
+    right = x
+
+    while left <= right:
+        mid = left + (right - left) // 2
+        if mid * mid == x:
+            return mid
+        elif mid * mid < x:
+            left = mid + 1
+            ans = mid
+        else:
+            right = mid - 1
+
+    return ans
+The code follows the binary search approach to find the square root of x. It initializes the left and right boundaries for the search. The while loop continues until the left boundary is less than or equal to the right boundary. In each iteration, it calculates the middle value, mid, and compares it with the square of x. Based on the comparison, it adjusts the boundaries accordingly.
+
+The code keeps track of the current answer (ans) as it searches for the square root. If mid * mid is less than x, it updates the left boundary and stores mid in ans. This way, ans stores the largest integer whose square is less than or equal to x.
+
+Finally, when the while loop ends, the code returns the value stored in ans, which represents the square root of x rounded down to the nearest integer.
+
+Note: The implementation assumes that x is a non-negative integer within the given constraints.
+
+Using this implementation:
+
+For x = 4, the output will be 2 because the square root of 4 is 2.
+For x = 8, the output will also be 2 because the square root of 8 is approximately 2.82842, rounded down to the nearest integer.
+
+
+
+
